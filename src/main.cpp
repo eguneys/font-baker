@@ -161,9 +161,6 @@ int main(int argc, char* argv[]) {
           length += sizeof(g1);
           memcpy(&bufff[length], buffer, ll);
           length += ll;
-
-
-
         }
       }
 
@@ -211,7 +208,6 @@ int main(int argc, char* argv[]) {
     auto name = font->family_name();
 
 
-
     memcpy(&bufff[length], &Meta, sizeof(Meta));
     length += sizeof(Meta);
 
@@ -225,19 +221,12 @@ int main(int argc, char* argv[]) {
     length += sizeof(line_gap);
     memcpy(&bufff[length], &name.length, sizeof(name.length));
     length += sizeof(name.length);
-    memcpy(&bufff[length], &name.buffer, sizeof(char) * name.length);
+    memcpy(&bufff[length], name.buffer, sizeof(char) * name.length);
     length += sizeof(char) * name.length;
-
-
-
-
-
-
-
 
   auto file = Platform::file_open(str.c_str(), FileMode::CreateWrite);
 
-  file->write(bufff, length);
+  file->write(bufff, length * sizeof(int));
 
   printf("Done.\n");
   }
