@@ -193,6 +193,7 @@ int main(int argc, char* argv[]) {
 
         float kerning = font->get_kerning(g1, g2, scale);
 
+        if (kerning == 0) continue;
 
         memcpy(&bufff[length], &Kerning, sizeof(Kerning));
         length += sizeof(Kerning);
