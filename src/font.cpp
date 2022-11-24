@@ -88,6 +88,7 @@ bool Font::get_image(const Font::Character& ch, Color* pixels) const {
     auto* src = (unsigned char*) pixels;
     stbtt_MakeGlyphBitmap((stbtt_fontinfo*)m_font, src, ch.width, ch.height, ch.width, ch.scale, ch.scale, ch.glyph);
     int len = ch.width * ch.height;
+
     for (int a = (len - 1) * 4, b = (len - 1); b >= 0; a -= 4, b -= 1) {
       src[a + 0] = src[b];
       src[a + 1] = src[b];

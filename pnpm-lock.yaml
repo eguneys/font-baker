@@ -1,0 +1,7 @@
+lockfileVersion: 5.4
+
+specifiers:
+  aset: link:../aset
+
+dependencies:
+  aset: link:../aset

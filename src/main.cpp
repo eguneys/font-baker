@@ -24,10 +24,10 @@ struct Character {
   int glyph;
   int width;
   int height;
-  int advance;
-  int offset_x;
-  int offset_y;
-  int scale;
+  float advance;
+  float offset_x;
+  float offset_y;
+  float scale;
   int has_glyph;
 };
 
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     str.append(folder);
     str.append("/out.data");
 
-    float size = 32;
+    float size = 64;
 
 
     Font* font = Font::create(font_path);
@@ -98,6 +98,7 @@ int main(int argc, char* argv[]) {
 
 
       auto ch = font->get_character(glyph, scale);
+
       if (ch.has_glyph) {
         Color* buffer = (Color*)malloc(sizeof(struct Color) * ch.width * ch.height);
         if (font->get_image(ch, buffer)) {
@@ -110,12 +111,16 @@ int main(int argc, char* argv[]) {
           length += sizeof(ColorKK);
           memcpy(&bufff[length], &g1, sizeof(g1));
           length += sizeof(g1);
+          memcpy(&bufff[length], &ch.width, sizeof(ch.width));
+          length += sizeof(ch.width);
+          memcpy(&bufff[length], &ch.height, sizeof(ch.height));
+          length += sizeof(ch.height);
+          memcpy(&bufff[length], &ll, sizeof(ll));
+          length += sizeof(ll);
           memcpy(&bufff[length], buffer, ll);
           length += ll;
-
         }
       }
-
 
       memcpy(&bufff[length], &CharKK, sizeof(CharKK));
       length += sizeof(CharKK);
@@ -146,11 +151,8 @@ int main(int argc, char* argv[]) {
 
       auto ch = font->get_character(glyph, scale);
       if (ch.has_glyph) {
-        int length = sizeof(struct Color) * ch.width * ch.height;
         Color* buffer = (Color*)malloc(length);
         if (font->get_image(ch, buffer)) {
-
-
           
           int ll = sizeof(struct Color) * ch.width * ch.height;
 
@@ -159,12 +161,16 @@ int main(int argc, char* argv[]) {
           length += sizeof(ColorKK);
           memcpy(&bufff[length], &g1, sizeof(g1));
           length += sizeof(g1);
+          memcpy(&bufff[length], &ch.width, sizeof(ch.width));
+          length += sizeof(ch.width);
+          memcpy(&bufff[length], &ch.height, sizeof(ch.height));
+          length += sizeof(ch.height);
+          memcpy(&bufff[length], &ll, sizeof(ll));
+          length += sizeof(ll);
           memcpy(&bufff[length], buffer, ll);
           length += ll;
         }
       }
-
-
 
       memcpy(&bufff[length], &CharKK, sizeof(CharKK));
       length += sizeof(CharKK);
@@ -174,7 +180,6 @@ int main(int argc, char* argv[]) {
       length += sizeof(ch);
 
     }
-
 
     for (auto i = 0; i < g_length; i++) {
       auto g1 = glyphs[i];
