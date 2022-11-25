@@ -3,8 +3,9 @@ import fs from 'fs'
 
 import { Packer } from 'aset'
 
+let folder = './test/'
 
-fs.readFile('out.data', (err, data) => {
+fs.readFile(folder + 'out.data', (err, data) => {
   let _ = parse(data)
 
   let packer = new Packer()
@@ -42,8 +43,8 @@ fs.readFile('out.data', (err, data) => {
   }
 
 
-  fs.writeFileSync('./out_0.png', packer.pages[0].png_buffer)
-  fs.writeFileSync('./out_0.json', JSON.stringify(res))
+  fs.writeFileSync(folder + 'out_0.png', packer.pages[0].png_buffer)
+  fs.writeFileSync(folder + 'out_0.json', JSON.stringify(res))
 
   console.log('content written.')
 
