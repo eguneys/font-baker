@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     str.append(folder);
     str.append("/out.data");
 
-    float size = 64 + 16;
+    float size = 128;
 
     Font* font = Font::create(font_path);
 

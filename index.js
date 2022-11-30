@@ -8,7 +8,7 @@ let folder = './test/'
 fs.readFile(folder + 'out.data', (err, data) => {
   let _ = parse(data)
 
-  let packer = new Packer()
+  let packer = new Packer(2)
 
   let colors = _.colors.map((color, i) => {
     let image = {
@@ -41,7 +41,6 @@ fs.readFile(folder + 'out.data', (err, data) => {
     glyphs: _.glyphs,
     colors
   }
-
 
   fs.writeFileSync(folder + 'out_0.png', packer.pages[0].png_buffer)
   fs.writeFileSync(folder + 'out_0.json', JSON.stringify(res))
