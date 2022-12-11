@@ -50,11 +50,11 @@ struct Metadata {
 int main(int argc, char* argv[]) {
 
 
-  int* bufff = (int*)malloc(1024 * 1024 * 20);
+  int* bufff = (int*)malloc(1024 * 1024 * 100);
   int length = 0;
 
   
-  int* glyphs = (int*)malloc(1024 * 1024);
+  int* glyphs = (int*)malloc(1024 * 1024 * 100);
   int g_length = 0;
 
 
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
       length += sizeof(ch);
     }
 
-    for (auto i = 161; i < 255; i++) {
+    for (auto i = 161; i < 355; i++) {
 
       auto glyph = font->get_glyph(i);
       if (glyph <= 0)
